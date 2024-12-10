@@ -42,5 +42,11 @@ jobs:
       # Install Dependencies 
       - run: npm install
         
-        
+      # OWASP Dependency Check
+      - name: Run OWASP Dependency Check
+        uses: dependency-check/scan-action@v2
+        with:
+          project: 'Tic-game'
+          scanPath: './'
+          outputDirectory: 'dependency-check-report'  
       
