@@ -48,6 +48,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set NVD API Key
+        run: |
+          echo "NVD_API_KEY=1d8259e7-8007-4d99-b56e-53e57e5a6b04" >> $GITHUB_ENV   
+
       - name: Install OWASP Dependency-Check
         run: |
           curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v11.0.0/dependency-check-11.0.0-release.zip
