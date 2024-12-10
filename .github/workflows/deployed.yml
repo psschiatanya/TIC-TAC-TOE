@@ -48,7 +48,7 @@ jobs:
       # OWASP Dependency Check
       - name: Run OWASP Dependency Check
         run: |
-          ./dependency-check.sh \
+          dependency-check.sh \
             --project "Tic-game" \
             --scan . \
             --out ./dependency-check-report \
