@@ -29,15 +29,17 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} #OPTIONAL  
           
-     # Install Dependencies
-      - name: Install dependencies
+      # Checkout Code 
+      - name: Checkout codes
         uses: actions/checkout@v3
-        
+      # Set up Node.js    
       - uses: actions/setup-node@v3
         with:
           node-version: '16' # Specify the version of Node.js
+      # Checking version      
       - run: node -v
       - run: npm -v      
+      # Install Dependencies 
       - run: npm install
         
         
