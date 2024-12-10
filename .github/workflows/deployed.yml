@@ -42,13 +42,40 @@ jobs:
       # Install Dependencies 
       - run: npm install
 
-      
-          
-        
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      - name: Set NVD API Key
+        run: |
+          echo "NVD_API_KEY=1d8259e7-8007-4d99-b56e-53e57e5a6b04" >> $GITHUB_ENV   
+
+      - name: Install OWASP Dependency-Check
+        run: |
+          curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v11.0.0/dependency-check-11.0.0-release.zip
+          unzip dependency-check.zip -d .
+          chmod +x dependency-check/bin/dependency-check.sh
+
+      - name: Run OWASP Dependency-Check
+        run: |
+          ./dependency-check/bin/dependency-check.sh \
+            --project "Tic-game" \
+            --scan . \
+            --out ./dependency-check-report \
+            --format ALL
+
+      - name: Upload Dependency-Check Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependency-check-report
+          path: ./dependency-check-report
 
       # File System Scan
       - name: Trivy File System Scan
         run: |
-          #curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-          trivy fs . --severity HIGH,CRITICAL --exit-code 1 --ignore-unfixed    
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+          trivy fs . --severity HIGH,CRITICAL --exit-code 1 --ignore-unfixed
+
+      
+          
+        
+
