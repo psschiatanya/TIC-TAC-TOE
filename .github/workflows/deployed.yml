@@ -32,6 +32,8 @@ jobs:
      # Install Dependencies
       - name: Install dependencies
         uses: actions/checkout@v3
+        
+      - uses: actions/setup-node@v3
         with:
           node-version: '16' # Specify the version of Node.js
       - run: node -v
