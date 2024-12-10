@@ -43,10 +43,10 @@ jobs:
       - run: npm install
 
       - name: Install OWASP Dependency-Check
-        run: |
-          curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-6.5.3-release.zip
-          unzip dependency-check.zip -d dependency-check
-          chmod +x dependency-check/bin/dependency-check.sh
+       # run: |
+       #   curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-6.5.3-release.zip
+       #   unzip dependency-check.zip -d dependency-check
+       #   chmod +x dependency-check/bin/dependency-check.sh
 
       - name: Debug:Check if dependency-check.sh exists
         run: |
