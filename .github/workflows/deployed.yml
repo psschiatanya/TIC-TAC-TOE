@@ -47,13 +47,11 @@ jobs:
         
       # OWASP Dependency Check
       - name: Run OWASP Dependency Check
-        run: |
-          /opt/dependency-check/bin/dependency-check.sh \
-            --project "Tic-game" \
-            --scan . \
-            --out ./dependency-check-report \
-            --format ALL
-            --disableDatabase
+        uses: dependency-check/scan-action@v2
+        with:
+          project: 'Tic-game'
+          scanPath: './'
+          outputDirectory: 'dependency-check-report'
 
       - name: Upload Dependency-Check Report
         uses: actions/upload-artifact@v3
