@@ -18,3 +18,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          
+      # Quality gate check
+      - name: Wait for Quality Gate
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          projectKey: Tic-game
+          organization: YOUR_ORG
+          token: ${{ secrets.SONAR_TOKEN }}     
