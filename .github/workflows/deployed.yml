@@ -44,9 +44,10 @@ jobs:
         
       # OWASP Dependency Check
       - name: Run OWASP Dependency Check
-        uses: dependency-check/scan-action@v2
-        with:
-          project: 'Tic-game'
-          scanPath: './'
-          outputDirectory: 'dependency-check-report'  
+        run: |
+          ./dependency-check/bin/dependency-check.sh \
+            --project "My Project" \
+            --scan . \
+            --out ./dependency-check-report \
+            --format ALL
       
