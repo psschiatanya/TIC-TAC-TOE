@@ -53,6 +53,7 @@ jobs:
             --scan . \
             --out ./dependency-check-report \
             --format ALL
+            --disableDatabase
 
       - name: Upload Dependency-Check Report
         uses: actions/upload-artifact@v3
