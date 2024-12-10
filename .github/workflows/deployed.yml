@@ -45,17 +45,20 @@ jobs:
       
           
         
-      # OWASP Dependency Check
-      - name: Run OWASP Dependency Check
-        uses: dependency-check/scan-action@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run OWASP Dependency-Check
+        uses: jeremylong/DependencyCheck-action@v1
         with:
-          project: 'Tic-game'
-          scanPath: './'
-          outputDirectory: 'dependency-check-report'
+          project: "Tic-game"
+          scan: "."
+          out: "./dependency-check-report"
+          format: "ALL"
 
       - name: Upload Dependency-Check Report
         uses: actions/upload-artifact@v3
         with:
           name: dependency-check-report
-          path: ./dependency-check-report      
+          path: ./dependency-check-report
       
