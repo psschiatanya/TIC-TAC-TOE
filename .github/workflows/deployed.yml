@@ -41,13 +41,35 @@ jobs:
       - run: npm -v      
       # Install Dependencies 
       - run: npm install
+
+      - name: Install OWASP Dependency-Check
+        run: |
+          curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-6.5.3-release.zip
+          unzip dependency-check.zip -d dependency-check
+          chmod +x dependency-check/bin/dependency-check.sh
+
+      - name: Debug:Check if dependency-check.sh exists
+        run: |
+          if [ -f ./dependency-check/bin/dependency-check.sh ]; then
+            echo "Dependency-Check script found."
+          else
+            echo "Dependency-Check script NOT found."
+            exit 1
+          fi 
+          
         
       # OWASP Dependency Check
       - name: Run OWASP Dependency Check
         run: |
           ./dependency-check/bin/dependency-check.sh \
-            --project "My Project" \
+            --project "Tic-game" \
             --scan . \
             --out ./dependency-check-report \
             --format ALL
+
+      - name: Upload Dependency-Check Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependency-check-report
+          path: ./dependency-check-report      
       
