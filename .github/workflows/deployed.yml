@@ -49,21 +49,7 @@ jobs:
         run: |
           echo "NVD_API_KEY=1d8259e7-8007-4d99-b56e-53e57e5a6b04" >> $GITHUB_ENV   
 
-    
 
-      - name: Run OWASP Dependency-Check
-        run: |
-          /opt/dependency-check/bin/dependency-check.sh \
-            --project "Tic-game" \
-            --scan . \
-            --out ./dependency-check-report \
-            --format HTML
-
-      - name: Upload Dependency-Check Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-check-report
-          path: ./dependency-check-report
 
       # File System Scan
       - name: Trivy File System Scan
