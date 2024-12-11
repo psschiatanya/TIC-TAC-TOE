@@ -54,7 +54,7 @@ jobs:
       # File System Scan
       - name: Trivy File System Scan
         run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+          #curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
           trivy fs . --severity HIGH,CRITICAL --exit-code 1 --ignore-unfixed
 
       
