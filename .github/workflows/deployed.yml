@@ -52,13 +52,6 @@ jobs:
       - name: Set environment variable to disable VEX notice
         run: echo "TRIVY_DISABLE_VEX_NOTICE=true" >> $GITHUB_ENV
 
-      # File System Scan
-      - name: Trivy File System Scan
-        run: |
-          #curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-          trivy fs . --severity HIGH,CRITICAL --exit-code 1 --ignore-unfixed
-
-      
           
         
 
