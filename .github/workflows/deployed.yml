@@ -49,7 +49,8 @@ jobs:
         run: |
           echo "NVD_API_KEY=1d8259e7-8007-4d99-b56e-53e57e5a6b04" >> $GITHUB_ENV   
 
-
+      - name: Set environment variable to disable VEX notice
+        run: echo "TRIVY_DISABLE_VEX_NOTICE=true" >> $GITHUB_ENV
 
       # File System Scan
       - name: Trivy File System Scan
