@@ -49,19 +49,15 @@ jobs:
         run: |
           echo "NVD_API_KEY=1d8259e7-8007-4d99-b56e-53e57e5a6b04" >> $GITHUB_ENV   
 
-      - name: Install OWASP Dependency-Check
-        run: |
-          curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v11.0.0/dependency-check-11.0.0-release.zip
-          unzip dependency-check.zip -d .
-          chmod +x dependency-check/bin/dependency-check.sh
+    
 
       - name: Run OWASP Dependency-Check
         run: |
-          ./dependency-check/bin/dependency-check.sh \
+          /opt/dependency-check/bin/dependency-check.sh \
             --project "Tic-game" \
             --scan . \
             --out ./dependency-check-report \
-            --format ALL
+            --format HTML
 
       - name: Upload Dependency-Check Report
         uses: actions/upload-artifact@v3
